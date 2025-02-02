@@ -562,10 +562,10 @@ tracks/1/path = NodePath("movible/Knight_animation_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 3]
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333, 0.6333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 3]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -594,6 +594,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_e33ru"]
 resource_name = "attack_animation"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -613,7 +614,7 @@ tracks/1/path = NodePath("movible/Knight_animation_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.6333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -649,7 +650,7 @@ tracks/4/path = NodePath("Knigth_machine_state/attack_state:is_attacking")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.6333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -676,10 +677,10 @@ tracks/1/path = NodePath("movible/Knight_animation_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.266667, 0.466667, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0, 3]
+"values": [0, 3, 2, 1]
 }
 
 [sub_resource type="Animation" id="Animation_r1q81"]
@@ -770,10 +771,10 @@ tracks/1/path = NodePath("movible/Knight_animation_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0, 4]
+"values": [0, 1, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_c23ov"]

@@ -13,7 +13,7 @@ func process_state():
 	if Input.is_action_pressed("move_crouch"):
 		knigth_machine_state.change_state($"../crouch_state")
 		
-	elif Input.is_action_pressed("move_attack"):
+	if Input.is_action_pressed("move_attack"):
 		knigth_machine_state.change_state($"../attack_state")
 		
 	elif not direction:

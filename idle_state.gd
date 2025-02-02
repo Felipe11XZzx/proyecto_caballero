@@ -12,11 +12,15 @@ func process_state():
 	if Input.is_action_pressed("move_jump") and knigth.is_on_floor():
 		knigth_machine_state.change_state($"../jump_state")	
 		
+	elif Input.is_action_pressed("move_attack"):
+		knigth_machine_state.change_state($"../attack_state")
+	
+	elif Input.is_action_pressed("move_attack_2"):
+		knigth_machine_state.change_state($"../attack_2_state")
+			
 	elif Input.is_action_pressed("move_crouch"):
 		knigth_machine_state.change_state($"../crouch_state")
 			
-	elif Input.is_action_pressed("move_attack"):
-		knigth_machine_state.change_state($"../attack_state")
 					
 	elif direction: 
 		knigth_machine_state.change_state($"../run_state")

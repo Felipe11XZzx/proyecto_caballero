@@ -5,7 +5,7 @@ class_name knigth_state extends Node
 @onready var knigth_machine_state: Node = $".."
 
 const SPEED = 800.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -600.0
 
 func enter_state():
 	pass
