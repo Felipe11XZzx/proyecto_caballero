@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4slusg80f63x"]
+
+[ext_resource type="Texture2D" uid="uid://c50clvi717l7n" path="res://golem_assets/proyectiles/arm_projectile_glowing.png" id="1_ql1my"]
+[ext_resource type="Script" path="res://arm_projectile.gd" id="1_uf8jt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbxi8"]
+size = Vector2(35, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgwlq"]
+atlas = ExtResource("1_ql1my")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quhha"]
+atlas = ExtResource("1_ql1my")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt4qb"]
+atlas = ExtResource("1_ql1my")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rir4o"]
+atlas = ExtResource("1_ql1my")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7tjb"]
+atlas = ExtResource("1_ql1my")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57eg6"]
+atlas = ExtResource("1_ql1my")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d014f"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgwlq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quhha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt4qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rir4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7tjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57eg6")
+}],
+"loop": true,
+"name": &"projectile_animation",
+"speed": 5.0
+}]
+
+[node name="arm_projectile" type="StaticBody2D"]
+rotation = -3.14159
+script = ExtResource("1_uf8jt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_gbxi8")
+debug_color = Color(0.901961, 0.180392, 0.176471, 0.419608)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-29, 12)
+sprite_frames = SubResource("SpriteFrames_d014f")
+animation = &"projectile_animation"
+frame = 5
+frame_progress = 0.965275
