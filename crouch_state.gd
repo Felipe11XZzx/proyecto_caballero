@@ -21,14 +21,6 @@ func process_state():
 			
 		if not Input.is_action_pressed("move_crouch"):
 			knigth_machine_state.change_state($"../idle_state")
-				
-		if knigth.velocity.x < 0:
-			$"../../movible".scale.x =  -abs($"../../movible".scale.x)	
-			knigth.move_and_slide()				
-			
-		if knigth.velocity.x > 0:
-			$"../../movible".scale.x =abs($"../../movible".scale.x)
-			knigth.move_and_slide()				
 			
 func exit_state():
 	pass
