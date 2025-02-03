@@ -5,13 +5,10 @@ func enter_state():
 	knigth.move_and_slide()
 
 func process_state():
-	animation_player.play("jump_animation")
 	var direction = Input.get_axis("move_left", "move_right")
+	animation_player.play("jump_animation")
 	
-	
-	if Input.is_action_pressed("move_jump") and knigth.is_on_floor():
-		knigth.move_and_slide()
-		knigth_machine_state.change_state($".")
+	if 	knigth.is_on_floor():
 		print("Funciona saltar pero no cambia la animacion a idle")
 		
 		if direction:
@@ -25,7 +22,6 @@ func process_state():
 
 		if knigth.velocity.x < 0:
 			$"../../movible".scale.x = -abs($"../../movible".scale.x)
-			knigth.move_and_slide()
 						
 		if knigth.velocity.x > 0:
 			$"../../movible".scale.x = abs($"../../movible".scale.x)
