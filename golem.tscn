@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://cik8aqhqv0ed1"]
+[gd_scene load_steps=55 format=3 uid="uid://cik8aqhqv0ed1"]
 
 [ext_resource type="Script" path="res://golem.gd" id="1_184jp"]
 [ext_resource type="Texture2D" uid="uid://b76y7xecduqbw" path="res://golem_assets/Character_sheet.png" id="1_xv5am"]
+[ext_resource type="Texture2D" uid="uid://bktgakbi58pix" path="res://golem_assets/proyectiles/Laser_sheet.png" id="3_hvjlb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ou8l3"]
 size = Vector2(10, 20)
@@ -21,6 +22,34 @@ region = Rect2(200, 0, 100, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3wbgs"]
 atlas = ExtResource("1_xv5am")
 region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrt1r"]
+atlas = ExtResource("1_xv5am")
+region = Rect2(0, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ay32h"]
+atlas = ExtResource("1_xv5am")
+region = Rect2(100, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6t61"]
+atlas = ExtResource("1_xv5am")
+region = Rect2(200, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10r12"]
+atlas = ExtResource("1_xv5am")
+region = Rect2(300, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktmlc"]
+atlas = ExtResource("1_xv5am")
+region = Rect2(400, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13j81"]
+atlas = ExtResource("1_xv5am")
+region = Rect2(500, 500, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loaln"]
+atlas = ExtResource("1_xv5am")
+region = Rect2(600, 500, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8sq4f"]
 atlas = ExtResource("1_xv5am")
@@ -99,6 +128,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vrt1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ay32h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6t61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10r12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktmlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13j81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loaln")
+}],
+"loop": true,
+"name": &"laser_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8sq4f")
 }, {
 "duration": 1.0,
@@ -150,7 +205,360 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxe0t"]
+size = Vector2(261, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvvaf"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 0, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kdam"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 100, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv43y"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 200, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cilbu"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 300, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvf2p"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 400, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18n0l"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 500, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abj1m"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 600, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t4vt"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 700, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qxq2"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 800, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47hgb"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 900, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1c2n"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 1000, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qns8o"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 1100, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwjov"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 1200, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocpy3"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 1300, 300, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lx5c"]
+atlas = ExtResource("3_hvjlb")
+region = Rect2(0, 1400, 300, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ap48e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvvaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kdam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv43y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cilbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvf2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18n0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abj1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4t4vt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qxq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47hgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1c2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qns8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwjov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocpy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lx5c")
+}],
+"loop": true,
+"name": &"laser_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvars"]
+size = Vector2(20, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6c3i"]
+size = Vector2(31, 45.5)
+
+[sub_resource type="Animation" id="Animation_7ekkm"]
+resource_name = "shoot_projectile_animation"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("movible/Golem_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("movible/Golem_sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"throw_animation"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shot_projectile"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0rwnj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("movible/Golem_sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"throw_animation"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("movible/Golem_sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("movible/laser/laser_sprite:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"laser_animation"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("movible/laser/laser_sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("movible/laser/laser_hitbox/laser_collision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("movible/laser/meele_hitbox/meele_collision:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3v6t4"]
+resource_name = "shoot_laser_projectile"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("movible/laser/laser_sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"laser_animation"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("movible/laser/laser_sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.56667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2, 11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("movible/laser/laser_hitbox/laser_collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.833333, 1.83333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("movible/Golem_sprite:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"laser_animation"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("movible/Golem_sprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
+}
+
+[sub_resource type="Animation" id="Animation_ib7k3"]
+resource_name = "meele_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("movible/Golem_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0, 6, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("movible/Golem_sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"meele_animation"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("movible/laser/meele_hitbox/meele_collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.466667, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ye0u"]
+_data = {
+"RESET": SubResource("Animation_0rwnj"),
+"meele_animation": SubResource("Animation_ib7k3"),
+"shoot_laser_projectile": SubResource("Animation_3v6t4"),
+"shoot_projectile_animation": SubResource("Animation_7ekkm")
+}
+
 [node name="Golem" type="CharacterBody2D"]
+collision_layer = 5
 script = ExtResource("1_184jp")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -158,10 +566,55 @@ shape = SubResource("RectangleShape2D_ou8l3")
 
 [node name="movible" type="Marker2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="movible"]
+[node name="Golem_sprite" type="AnimatedSprite2D" parent="movible"]
 sprite_frames = SubResource("SpriteFrames_weckl")
 animation = &"throw_animation"
-frame_progress = 0.270242
 
 [node name="projectile_position" type="Marker2D" parent="movible"]
 position = Vector2(20, 14)
+
+[node name="laser" type="Node2D" parent="movible"]
+
+[node name="laser_hitbox" type="Area2D" parent="movible/laser" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 4
+
+[node name="laser_collision" type="CollisionShape2D" parent="movible/laser/laser_hitbox"]
+position = Vector2(119.5, -21)
+shape = SubResource("RectangleShape2D_xxe0t")
+debug_color = Color(0.866667, 0.0745098, 0.254902, 0.419608)
+
+[node name="laser_sprite" type="AnimatedSprite2D" parent="movible/laser"]
+position = Vector2(112, -1)
+sprite_frames = SubResource("SpriteFrames_ap48e")
+animation = &"laser_animation"
+frame = 11
+
+[node name="meele_hitbox" type="Area2D" parent="movible/laser" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 4
+
+[node name="meele_collision" type="CollisionShape2D" parent="movible/laser/meele_hitbox"]
+position = Vector2(21, 5)
+shape = SubResource("RectangleShape2D_bvars")
+debug_color = Color(0.819608, 0.0745098, 0.227451, 0.419608)
+
+[node name="hurtbox" type="Area2D" parent="movible"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="movible/hurtbox"]
+position = Vector2(-5, -3)
+shape = SubResource("RectangleShape2D_p6c3i")
+debug_color = Color(0, 0.633872, 0.435543, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7ye0u")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

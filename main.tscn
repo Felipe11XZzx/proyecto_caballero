@@ -18,5 +18,5 @@ position = Vector2(782, 610.25)
 shape = SubResource("RectangleShape2D_gdhax")
 
 [node name="Golem" parent="." instance=ExtResource("2_iep5e")]
-position = Vector2(108, 481)
-scale = Vector2(3, 3)
+position = Vector2(96, 425)
+scale = Vector2(4, 4)

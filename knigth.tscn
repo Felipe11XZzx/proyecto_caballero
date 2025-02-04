@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://bgfxn0psr2wsp"]
+[gd_scene load_steps=90 format=3 uid="uid://bgfxn0psr2wsp"]
 
 [ext_resource type="Texture2D" uid="uid://civ4h8574gw1r" path="res://assets/caballero/animations/_Attack.png" id="1_g5dex"]
 [ext_resource type="Texture2D" uid="uid://bfhdl3l5j7nvy" path="res://assets/caballero/animations/_Attack2.png" id="1_psmmo"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://crouch_attack_state.gd" id="19_tyjl3"]
 [ext_resource type="Script" path="res://jump_state.gd" id="20_3etib"]
 [ext_resource type="Script" path="res://run_crawl_state.gd" id="21_0fyhj"]
+[ext_resource type="PackedScene" uid="uid://bnfhk272uhiu8" path="res://Vida.tscn" id="23_71fmu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bno44"]
 size = Vector2(25, 38)
@@ -883,9 +884,13 @@ _data = {
 "run_crawl_animation": SubResource("Animation_uuwqx")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1muh"]
+size = Vector2(25.7387, 39.9982)
+
 [node name="Knigth" type="CharacterBody2D"]
 rotation = 0.017628
 scale = Vector2(4, 4)
+collision_layer = 5
 script = ExtResource("1_sshvl")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -900,6 +905,8 @@ sprite_frames = SubResource("SpriteFrames_py4xt")
 animation = &"run_animation"
 
 [node name="HitBox" type="Area2D" parent="movible"]
+collision_layer = 2
+collision_mask = 4
 
 [node name="attack_front_collision" type="CollisionShape2D" parent="movible/HitBox"]
 position = Vector2(44, -2)
@@ -961,3 +968,21 @@ script = ExtResource("20_3etib")
 
 [node name="run_crawl_animation" type="Node2D" parent="Knigth_machine_state"]
 script = ExtResource("21_0fyhj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Vida" parent="CanvasLayer" node_paths=PackedStringArray("parent") instance=ExtResource("23_71fmu")]
+max_health = 100.0
+parent = NodePath("../..")
+health = 100.0
+
+[node name="knigtht_hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="knigtht_hurtbox"]
+position = Vector2(-1.08153, 1.28286)
+shape = SubResource("RectangleShape2D_c1muh")
+debug_color = Color(0.823463, 0.00166725, 0.959216, 0.42)
+
+[connection signal="area_shape_entered" from="knigtht_hurtbox" to="." method="_on_knigtht_hurtbox_area_shape_entered"]
