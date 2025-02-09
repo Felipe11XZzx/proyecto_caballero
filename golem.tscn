@@ -1,8 +1,9 @@
-[gd_scene load_steps=55 format=3 uid="uid://cik8aqhqv0ed1"]
+[gd_scene load_steps=56 format=3 uid="uid://cik8aqhqv0ed1"]
 
 [ext_resource type="Script" path="res://golem.gd" id="1_184jp"]
 [ext_resource type="Texture2D" uid="uid://b76y7xecduqbw" path="res://golem_assets/Character_sheet.png" id="1_xv5am"]
 [ext_resource type="Texture2D" uid="uid://bktgakbi58pix" path="res://golem_assets/proyectiles/Laser_sheet.png" id="3_hvjlb"]
+[ext_resource type="PackedScene" uid="uid://bnfhk272uhiu8" path="res://Vida.tscn" id="4_g4per"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ou8l3"]
 size = Vector2(10, 20)
@@ -206,7 +207,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxe0t"]
-size = Vector2(261, 20)
+size = Vector2(274, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvvaf"]
 atlas = ExtResource("3_hvjlb")
@@ -325,50 +326,7 @@ animations = [{
 size = Vector2(20, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6c3i"]
-size = Vector2(31, 45.5)
-
-[sub_resource type="Animation" id="Animation_7ekkm"]
-resource_name = "shoot_projectile_animation"
-length = 1.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("movible/Golem_sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 6]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("movible/Golem_sprite:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"throw_animation"]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.133333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"shot_projectile"
-}]
-}
+size = Vector2(48, 45.75)
 
 [sub_resource type="Animation" id="Animation_0rwnj"]
 length = 0.001
@@ -417,12 +375,12 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [11]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/path = NodePath("movible/laser/laser_hitbox/laser_collision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
@@ -434,7 +392,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/path = NodePath("movible/laser/meele_hitbox/meele_collision:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -444,70 +402,17 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
-
-[sub_resource type="Animation" id="Animation_3v6t4"]
-resource_name = "shoot_laser_projectile"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("movible/laser/laser_sprite:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:is_laser_finished")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"laser_animation"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("movible/laser/laser_sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.56667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [2, 11]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("movible/laser/laser_hitbox/laser_collision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.833333, 1.83333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("movible/Golem_sprite:animation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.233333),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"laser_animation"]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("movible/Golem_sprite:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.466667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 6]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_ib7k3"]
@@ -543,10 +448,129 @@ tracks/2/path = NodePath("movible/laser/meele_hitbox/meele_collision:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.466667, 0.933333),
+"times": PackedFloat32Array(0, 0.466667, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_3v6t4"]
+resource_name = "shoot_laser_projectile"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("movible/laser/laser_sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"laser_animation"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("movible/laser/laser_sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0, 14, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("movible/laser/laser_hitbox/laser_collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.833333, 1.5667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("movible/Golem_sprite:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"laser_animation"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("movible/Golem_sprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:is_laser_finished")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.4667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7ekkm"]
+resource_name = "shoot_projectile_animation"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("movible/Golem_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("movible/Golem_sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"throw_animation"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shot_projectile"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ye0u"]
@@ -580,7 +604,7 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="laser_collision" type="CollisionShape2D" parent="movible/laser/laser_hitbox"]
-position = Vector2(119.5, -21)
+position = Vector2(126, -19)
 shape = SubResource("RectangleShape2D_xxe0t")
 debug_color = Color(0.866667, 0.0745098, 0.254902, 0.419608)
 
@@ -600,11 +624,12 @@ shape = SubResource("RectangleShape2D_bvars")
 debug_color = Color(0.819608, 0.0745098, 0.227451, 0.419608)
 
 [node name="hurtbox" type="Area2D" parent="movible"]
+position = Vector2(-5, -6)
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="movible/hurtbox"]
-position = Vector2(-5, -3)
+position = Vector2(4, 1.875)
 shape = SubResource("RectangleShape2D_p6c3i")
 debug_color = Color(0, 0.633872, 0.435543, 0.42)
 
@@ -617,4 +642,34 @@ libraries = {
 "": SubResource("AnimationLibrary_7ye0u")
 }
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_top = 20.0
+offset_bottom = 50.0
+text = "Life Golem"
+horizontal_alignment = 1
+
+[node name="Vida" parent="CanvasLayer" node_paths=PackedStringArray("parent") instance=ExtResource("4_g4per")]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = -0.006
+anchor_right = 1.0
+anchor_bottom = -0.006
+offset_left = -140.0
+offset_top = 3.888
+offset_right = -90.0
+offset_bottom = 23.888
+max_health = 100.0
+parent = NodePath("../..")
+health = 100.0
+
+[connection signal="area_shape_entered" from="movible/hurtbox" to="." method="_on_hurtbox_area_shape_entered"]
+[connection signal="body_entered" from="movible/hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

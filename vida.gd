@@ -1,4 +1,4 @@
-class_name health_class extends Control
+class_name health_component extends Control
 
 @export var max_health: float
 @export var parent: Node2D

@@ -422,14 +422,14 @@ animations = [{
 radius = 23.0217
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6jbi5"]
-size = Vector2(32.5, 13)
+size = Vector2(80.5007, 23.8988)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b4yjr"]
-radius = 17.0
-height = 76.0
+radius = 22.3171
+height = 91.5563
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbi8k"]
-size = Vector2(50, 13)
+size = Vector2(63.744, 16.7748)
 
 [sub_resource type="Animation" id="Animation_qdgwh"]
 length = 0.001
@@ -459,7 +459,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("movible/HitBox/attack_front_collision:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -467,11 +467,11 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("movible/HitBox/attack_down_collision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -483,7 +483,7 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/path = NodePath("movible/HitBox/attack_2_collision_front:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
@@ -491,11 +491,11 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/path = NodePath("movible/HitBox/attack_2_collision_bottom:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -508,7 +508,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Knigth_machine_state/crouch_state:is_animation_finished")
+tracks/6/path = NodePath("Knigth_machine_state/crouch_state:animation_finished")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -520,7 +520,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Knigth_machine_state/crouch_state:animation_finished")
+tracks/7/path = NodePath("Knigth_machine_state/attack_2_state:is_attacking2")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -532,7 +532,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Knigth_machine_state/attack_2_state:is_attacking")
+tracks/8/path = NodePath("Knigth_machine_state/attack_state:is_attacking1")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -541,33 +541,10 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Knigth_machine_state/attack_2_state:is_attacking2")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Knigth_machine_state/attack_state:is_attacking1")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_mnd0k"]
 resource_name = "attack_2_animation"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -587,7 +564,7 @@ tracks/1/path = NodePath("movible/Knight_animation_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333, 0.6333),
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.5333, 0.6333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0, 1, 2, 3, 4, 3]
@@ -599,7 +576,7 @@ tracks/2/path = NodePath("movible/HitBox/attack_2_collision_front:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333, 0.2, 0.3),
+"times": PackedFloat32Array(0.0333333, 0.2, 0.3667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -611,7 +588,7 @@ tracks/3/path = NodePath("movible/HitBox/attack_2_collision_bottom:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.0333333, 0.266667, 0.5),
+"times": PackedFloat32Array(0.0333333, 0.266667, 0.5333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -627,6 +604,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("movible/HitBox/attack_down_collision:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
 }
 
 [sub_resource type="Animation" id="Animation_e33ru"]
@@ -663,7 +652,7 @@ tracks/2/path = NodePath("movible/HitBox/attack_front_collision:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333, 0.2, 0.966667),
+"times": PackedFloat32Array(0.0333333, 0.2, 0.6333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -675,10 +664,10 @@ tracks/3/path = NodePath("movible/HitBox/attack_down_collision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.0333333, 0.966667, 1.16667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.6333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [true, true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -692,10 +681,21 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("movible/HitBox/attack_2_collision_bottom:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="Animation" id="Animation_mnprh"]
 resource_name = "crawl_attack_animation"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -715,10 +715,22 @@ tracks/1/path = NodePath("movible/Knight_animation_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.466667, 0.633333),
+"times": PackedFloat32Array(0, 0.3, 0.5333, 0.7667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0, 3, 2, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("movible/HitBox/attack_down_collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_r1q81"]
@@ -759,6 +771,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("movible/HitBox/attack_down_collision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_ywfdy"]
@@ -885,7 +909,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1muh"]
-size = Vector2(25.7387, 39.9982)
+size = Vector2(25.4799, 39.8692)
 
 [node name="Knigth" type="CharacterBody2D"]
 rotation = 0.017628
@@ -904,31 +928,34 @@ position = Vector2(4, -20)
 sprite_frames = SubResource("SpriteFrames_py4xt")
 animation = &"run_animation"
 
-[node name="HitBox" type="Area2D" parent="movible"]
+[node name="HitBox" type="Area2D" parent="movible" groups=["golem_damage"]]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 0
 
 [node name="attack_front_collision" type="CollisionShape2D" parent="movible/HitBox"]
-position = Vector2(44, -2)
+position = Vector2(44.7739, 0.960916)
 shape = SubResource("CircleShape2D_fs813")
 disabled = true
 debug_color = Color(0.637655, 0.526042, 5.77569e-07, 0.42)
 
 [node name="attack_down_collision" type="CollisionShape2D" parent="movible/HitBox"]
-position = Vector2(42, 14)
+position = Vector2(3.39272, 7.66039)
+rotation = -3.14159
 shape = SubResource("RectangleShape2D_6jbi5")
+disabled = true
 debug_color = Color(0.178278, 0.632966, 0.333691, 0.42)
 
 [node name="attack_2_collision_front" type="CollisionShape2D" parent="movible/HitBox"]
-position = Vector2(4, 2)
+position = Vector2(9.44564, -3.16699)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_b4yjr")
 disabled = true
-debug_color = Color(0.81142, 0.209204, 0.864481, 0.42)
+debug_color = Color(0, 0.554685, 0.907011, 0.42)
 
 [node name="attack_2_collision_bottom" type="CollisionShape2D" parent="movible/HitBox"]
-position = Vector2(-2, 10)
+position = Vector2(6.05724, 10.516)
 shape = SubResource("RectangleShape2D_nbi8k")
+disabled = true
 debug_color = Color(0.843125, 0.3804, 0, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -976,13 +1003,23 @@ max_health = 100.0
 parent = NodePath("../..")
 health = 100.0
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 1.0
+offset_top = 21.0
+offset_right = 140.0
+offset_bottom = 44.0
+text = "Life Knigth"
+horizontal_alignment = 1
+
 [node name="knigtht_hurtbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="knigtht_hurtbox"]
-position = Vector2(-1.08153, 1.28286)
+position = Vector2(-1.21091, 1.21835)
 shape = SubResource("RectangleShape2D_c1muh")
 debug_color = Color(0.823463, 0.00166725, 0.959216, 0.42)
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="area_shape_entered" from="knigtht_hurtbox" to="." method="_on_knigtht_hurtbox_area_shape_entered"]

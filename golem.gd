@@ -1,16 +1,17 @@
 extends CharacterBody2D
 
-
+@export var is_laser_finished = false
+@export var is_attacking = false
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const projectile_scene = preload("res://arm_projectile.tscn")
 
 func _ready() -> void:
+	$movible/laser/laser_sprite.visible = false
 	pass
 	
 func _process(delta: float) -> void:
 	pass
-	#$movible/AnimatedSprite2D.play("idle_animation")
 
 func _physics_process(delta: float) -> void:
 	pass
@@ -29,15 +30,35 @@ func shot_laser():
 func _on_timer_timeout() -> void:
 	var rng = RandomNumberGenerator.new()
 	var number = rng.randi_range(1, 3)
-	
-	if (number == 1):
+	var is_playing = $AnimationPlayer.is_playing()
+	$movible/laser/laser_sprite.visible = false
+
+	print("Animacion Aleatoria Numero: " + str(number))
+	is_attacking = true
+	if number == 1:
+		$movible/laser/laser_sprite.visible = true
 		$AnimationPlayer.play("shoot_laser_projectile")
+		print("Entra en la animacion del laser")
+		print("Sale de la animacion del laser\n")
 	
-	if (number == 2):
+	elif number == 2:
+		print("Entra en la animacion meele")
 		$AnimationPlayer.play("meele_animation")
-		
-	if (number == 3):
+		print("Sale de la animacion meele \n")
+
+	elif number == 3:
+		print("Sale de la animacion del proyectil ")
 		$AnimationPlayer.play("shoot_projectile_animation")
+		print("Sale de la animacion del proyectil \n")
 		
-	$Timer.wait_time = number
+	await $AnimationPlayer.animation_finished
+	is_attacking = false
+	
+	var restartTime = rng.randi_range(2, 3)
+	$Timer.wait_time = restartTime
 	$Timer.start()
+	
+	
+func _on_hurtbox_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if area.is_in_group("golem_damage"):
+		$CanvasLayer/Vida.get_damage(15)

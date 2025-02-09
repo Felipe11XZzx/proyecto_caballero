@@ -78,3 +78,9 @@ sprite_frames = SubResource("SpriteFrames_d014f")
 animation = &"projectile_animation"
 frame = 5
 frame_progress = 0.965275
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

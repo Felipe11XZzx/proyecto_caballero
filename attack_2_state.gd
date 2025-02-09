@@ -10,7 +10,6 @@ func enter_state():
 func process_state():
 	if is_attacking2:
 		if Input.is_action_pressed("move_attack"):
-			print("Entra en el ataque 2")
 			knigth_machine_state.change_state($"../attack_state")
 			
 		else:

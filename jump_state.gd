@@ -9,8 +9,6 @@ func process_state():
 	var direction = Input.get_axis("move_left", "move_right")
 	
 	if 	knigth.is_on_floor():
-		print("Funciona saltar pero no cambia la animacion a idle")
-		
 		if direction:
 			knigth_machine_state.change_state($"../run_state")
 		

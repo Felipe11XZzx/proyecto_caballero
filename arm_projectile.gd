@@ -9,3 +9,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	$".".position.x += proyectile_speed * delta
 	pass
+
+
+func _on_timer_timeout() -> void:
+	$".".queue_free()

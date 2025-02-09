@@ -8,10 +8,8 @@ func enter_state():
 func process_state():
 	animation_player.play("crouch_animation")
 	var direction = Input.get_axis("move_left", "move_right")
-	print("animation finish false")
 	
 	if animation_finished:
-		print("animation finish true")
 				
 		if Input.is_action_pressed("move_crouch") && direction:
 			knigth_machine_state.change_state($"../run_crawl_animation")

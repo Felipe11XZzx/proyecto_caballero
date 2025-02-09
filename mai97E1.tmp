@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv5uabv44hlpq"]
+[gd_scene load_steps=4 format=3 uid="uid://cv5uabv44hlpq"]
 
 [ext_resource type="PackedScene" uid="uid://bgfxn0psr2wsp" path="res://knigth.tscn" id="1_o5eas"]
 [ext_resource type="PackedScene" uid="uid://cik8aqhqv0ed1" path="res://golem.tscn" id="2_iep5e"]
-[ext_resource type="PackedScene" uid="uid://ckdo7d14vns4k" path="res://world.tscn" id="3_2ydgb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdhax"]
 size = Vector2(3061, 132.5)
@@ -10,19 +9,14 @@ size = Vector2(3061, 132.5)
 [node name="main" type="Node2D"]
 
 [node name="Knigth" parent="." instance=ExtResource("1_o5eas")]
-position = Vector2(221, 870)
+position = Vector2(583, 463)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-384, 1004)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(782, 610.25)
 shape = SubResource("RectangleShape2D_gdhax")
-disabled = true
 
 [node name="Golem" parent="." instance=ExtResource("2_iep5e")]
-position = Vector2(220, 464)
+position = Vector2(96, 425)
 scale = Vector2(4, 4)
-
-[node name="world" parent="." instance=ExtResource("3_2ydgb")]
-scale = Vector2(3, 3)
