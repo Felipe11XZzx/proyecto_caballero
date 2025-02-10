@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://bgfxn0psr2wsp"]
+[gd_scene load_steps=92 format=3 uid="uid://bgfxn0psr2wsp"]
 
 [ext_resource type="Texture2D" uid="uid://civ4h8574gw1r" path="res://assets/caballero/animations/_Attack.png" id="1_g5dex"]
 [ext_resource type="Texture2D" uid="uid://bfhdl3l5j7nvy" path="res://assets/caballero/animations/_Attack2.png" id="1_psmmo"]
@@ -23,6 +23,9 @@
 [ext_resource type="Script" path="res://jump_state.gd" id="20_3etib"]
 [ext_resource type="Script" path="res://run_crawl_state.gd" id="21_0fyhj"]
 [ext_resource type="PackedScene" uid="uid://bnfhk272uhiu8" path="res://Vida.tscn" id="23_71fmu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41txd"]
+size = Vector2(25.0065, 8.74423)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bno44"]
 size = Vector2(25, 38)
@@ -541,6 +544,30 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("hitbox_head:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("knigtht_hurtbox/hurtbox_head:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_mnd0k"]
 resource_name = "attack_2_animation"
@@ -784,6 +811,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("knigtht_hurtbox/hurtbox_head:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("hitbox_head:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
 
 [sub_resource type="Animation" id="Animation_ywfdy"]
 resource_name = "idle_animation"
@@ -806,10 +857,34 @@ tracks/1/path = NodePath("movible/Knight_animation_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.966667),
+"times": PackedFloat32Array(0, 0.9667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hitbox_head:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("knigtht_hurtbox/hurtbox_head:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_f2ryf"]
@@ -889,10 +964,22 @@ tracks/1/path = NodePath("movible/Knight_animation_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.966667),
+"times": PackedFloat32Array(0, 0.9667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hitbox_head:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_btgp2"]
@@ -909,13 +996,21 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1muh"]
-size = Vector2(25.4799, 39.8692)
+size = Vector2(25.4799, 29.8707)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frlk8"]
+size = Vector2(25.502, 9.23975)
 
 [node name="Knigth" type="CharacterBody2D"]
 rotation = 0.017628
 scale = Vector2(4, 4)
 collision_layer = 5
 script = ExtResource("1_sshvl")
+
+[node name="hitbox_head" type="CollisionShape2D" parent="."]
+position = Vector2(-0.729074, -12.9892)
+shape = SubResource("RectangleShape2D_41txd")
+debug_color = Color(0.626978, 0.517984, 0.33457, 0.42)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 2)
@@ -1016,9 +1111,14 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="knigtht_hurtbox"]
-position = Vector2(-1.21091, 1.21835)
+position = Vector2(-1.21091, 6.21758)
 shape = SubResource("RectangleShape2D_c1muh")
-debug_color = Color(0.823463, 0.00166725, 0.959216, 0.42)
+debug_color = Color(0.696679, 0.494191, 0, 0.42)
+
+[node name="hurtbox_head" type="CollisionShape2D" parent="knigtht_hurtbox"]
+position = Vector2(-1.32912, -4.0891)
+shape = SubResource("RectangleShape2D_frlk8")
+debug_color = Color(0.54462, 0.00258135, 0.818425, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
