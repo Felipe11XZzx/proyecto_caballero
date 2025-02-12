@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://civ4h8574gw1r" path="res://assets/caballero/animations/_Attack.png" id="1_g5dex"]
 [ext_resource type="Texture2D" uid="uid://bfhdl3l5j7nvy" path="res://assets/caballero/animations/_Attack2.png" id="1_psmmo"]
-[ext_resource type="Script" path="res://knigth.gd" id="1_sshvl"]
+[ext_resource type="Script" path="res://golem_assets/proyectiles/knigth.gd" id="1_sshvl"]
 [ext_resource type="Texture2D" uid="uid://l3h4cfc8sy2e" path="res://assets/caballero/animations/_Idle.png" id="2_tk4ac"]
 [ext_resource type="Texture2D" uid="uid://bsu0ox7bipyd8" path="res://assets/caballero/animations/_Crouch.png" id="3_0k07r"]
 [ext_resource type="Texture2D" uid="uid://cbd4cb1ewvkv2" path="res://assets/caballero/animations/_CrouchAttack.png" id="3_erarr"]
@@ -24,11 +24,8 @@
 [ext_resource type="Script" path="res://run_crawl_state.gd" id="21_0fyhj"]
 [ext_resource type="PackedScene" uid="uid://bnfhk272uhiu8" path="res://Vida.tscn" id="23_71fmu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_41txd"]
-size = Vector2(25.0065, 8.74423)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bno44"]
-size = Vector2(25, 38)
+size = Vector2(25.3152, 29.6737)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixltg"]
 atlas = ExtResource("1_psmmo")
@@ -546,8 +543,8 @@ tracks/8/keys = {
 }
 tracks/9/type = "value"
 tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("hitbox_head:disabled")
+tracks/9/enabled = false
+tracks/9/path = NodePath("knigtht_hurtbox/hurtbox_head:disabled")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -559,7 +556,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("knigtht_hurtbox/hurtbox_head:disabled")
+tracks/10/path = NodePath("hitbox_head:disabled")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -830,10 +827,10 @@ tracks/5/path = NodePath("hitbox_head:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.9, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, false]
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_ywfdy"]
@@ -865,26 +862,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("hitbox_head:disabled")
+tracks/2/path = NodePath("knigtht_hurtbox/hurtbox_head:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.9667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true]
+"values": [false, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("knigtht_hurtbox/hurtbox_head:disabled")
+tracks/3/path = NodePath("hitbox_head:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.9667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_f2ryf"]
@@ -942,6 +939,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0, 9]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hitbox_head:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
 
 [sub_resource type="Animation" id="Animation_uuwqx"]
 resource_name = "run_crawl_animation"
@@ -976,10 +985,10 @@ tracks/2/path = NodePath("hitbox_head:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.9667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.9667),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, true]
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_btgp2"]
@@ -1001,20 +1010,19 @@ size = Vector2(25.4799, 29.8707)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_frlk8"]
 size = Vector2(25.502, 9.23975)
 
-[node name="Knigth" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5erk"]
+size = Vector2(25.5006, 9.20605)
+
+[node name="Knigth" type="CharacterBody2D" groups=["golem_damage"]]
 rotation = 0.017628
 scale = Vector2(4, 4)
 collision_layer = 5
 script = ExtResource("1_sshvl")
 
-[node name="hitbox_head" type="CollisionShape2D" parent="."]
-position = Vector2(-0.729074, -12.9892)
-shape = SubResource("RectangleShape2D_41txd")
-debug_color = Color(0.626978, 0.517984, 0.33457, 0.42)
-
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 2)
+position = Vector2(-1.1576, 6.16314)
 shape = SubResource("RectangleShape2D_bno44")
+debug_color = Color(0.357252, 0.576506, 0.618248, 0.42)
 
 [node name="movible" type="Marker2D" parent="."]
 
@@ -1121,5 +1129,10 @@ shape = SubResource("RectangleShape2D_frlk8")
 debug_color = Color(0.54462, 0.00258135, 0.818425, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="hitbox_head" type="CollisionShape2D" parent="."]
+position = Vector2(-1.46345, -13.2532)
+shape = SubResource("RectangleShape2D_m5erk")
+debug_color = Color(0.858824, 0.109804, 0.121569, 0.419608)
 
 [connection signal="area_shape_entered" from="knigtht_hurtbox" to="." method="_on_knigtht_hurtbox_area_shape_entered"]

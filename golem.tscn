@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cik8aqhqv0ed1"]
+[gd_scene load_steps=57 format=3 uid="uid://cik8aqhqv0ed1"]
 
 [ext_resource type="Script" path="res://golem.gd" id="1_184jp"]
 [ext_resource type="Texture2D" uid="uid://b76y7xecduqbw" path="res://golem_assets/Character_sheet.png" id="1_xv5am"]
@@ -581,6 +581,9 @@ _data = {
 "shoot_projectile_animation": SubResource("Animation_7ekkm")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbs1e"]
+size = Vector2(373.5, 117.5)
+
 [node name="Golem" type="CharacterBody2D"]
 collision_layer = 5
 script = ExtResource("1_184jp")
@@ -606,6 +609,7 @@ collision_mask = 4
 [node name="laser_collision" type="CollisionShape2D" parent="movible/laser/laser_hitbox"]
 position = Vector2(126, -19)
 shape = SubResource("RectangleShape2D_xxe0t")
+disabled = true
 debug_color = Color(0.866667, 0.0745098, 0.254902, 0.419608)
 
 [node name="laser_sprite" type="AnimatedSprite2D" parent="movible/laser"]
@@ -621,6 +625,7 @@ collision_mask = 4
 [node name="meele_collision" type="CollisionShape2D" parent="movible/laser/meele_hitbox"]
 position = Vector2(21, 5)
 shape = SubResource("RectangleShape2D_bvars")
+disabled = true
 debug_color = Color(0.819608, 0.0745098, 0.227451, 0.419608)
 
 [node name="hurtbox" type="Area2D" parent="movible"]
@@ -670,6 +675,16 @@ max_health = 100.0
 parent = NodePath("../..")
 health = 100.0
 
+[node name="detection_box" type="Area2D" parent="."]
+
+[node name="detection_collision" type="CollisionShape2D" parent="detection_box"]
+position = Vector2(161.25, 1.25)
+shape = SubResource("RectangleShape2D_fbs1e")
+debug_color = Color(0.721569, 0.458824, 0.352941, 0.270588)
+
 [connection signal="area_shape_entered" from="movible/hurtbox" to="." method="_on_hurtbox_area_shape_entered"]
 [connection signal="body_entered" from="movible/hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="detection_box" to="." method="_on_detection_box_body_entered"]
+[connection signal="body_exited" from="detection_box" to="." method="_on_detection_box_body_exited"]
+[connection signal="body_shape_exited" from="detection_box" to="." method="_on_detection_box_body_shape_exited"]

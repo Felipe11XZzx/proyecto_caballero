@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var is_laser_finished = false
 @export var is_attacking = false
+var activate = false
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const projectile_scene = preload("res://arm_projectile.tscn")
@@ -35,21 +36,22 @@ func _on_timer_timeout() -> void:
 
 	print("Animacion Aleatoria Numero: " + str(number))
 	is_attacking = true
-	if number == 1:
-		$movible/laser/laser_sprite.visible = true
-		$AnimationPlayer.play("shoot_laser_projectile")
-		print("Entra en la animacion del laser")
-		print("Sale de la animacion del laser\n")
+	if activate:
+		if number == 1:
+			$movible/laser/laser_sprite.visible = true
+			$AnimationPlayer.play("shoot_laser_projectile")
+			print("Entra en la animacion del laser")
+			print("Sale de la animacion del laser\n")
 	
-	elif number == 2:
-		print("Entra en la animacion meele")
-		$AnimationPlayer.play("meele_animation")
-		print("Sale de la animacion meele \n")
+		elif number == 2:
+			print("Entra en la animacion meele")
+			$AnimationPlayer.play("meele_animation")
+			print("Sale de la animacion meele \n")
 
-	elif number == 3:
-		print("Sale de la animacion del proyectil ")
-		$AnimationPlayer.play("shoot_projectile_animation")
-		print("Sale de la animacion del proyectil \n")
+		elif number == 3:
+			print("Sale de la animacion del proyectil ")
+			$AnimationPlayer.play("shoot_projectile_animation")
+			print("Sale de la animacion del proyectil \n")
 		
 	await $AnimationPlayer.animation_finished
 	is_attacking = false
@@ -62,3 +64,15 @@ func _on_timer_timeout() -> void:
 func _on_hurtbox_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area.is_in_group("golem_damage"):
 		$CanvasLayer/Vida.get_damage(15)
+
+
+func _on_detection_box_body_entered(body: Node2D) -> void:
+	if body.is_in_group("golem_damage"):
+		print("caballero detectado")
+		activate = true
+
+
+func _on_detection_box_body_exited(body: Node2D) -> void:
+	if body.is_in_group("golem_damage"):
+		activate = false
+		print("desactivando el area del golem")
