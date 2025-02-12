@@ -74,5 +74,7 @@ func _on_detection_box_body_entered(body: Node2D) -> void:
 
 func _on_detection_box_body_exited(body: Node2D) -> void:
 	if body.is_in_group("golem_damage"):
+		$AnimationPlayer.stop(true)
+		$AnimationPlayer.play("idle_golem_animation")
 		activate = false
 		print("desactivando el area del golem")
