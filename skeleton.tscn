@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://d0noxg6hflkj8"]
+[gd_scene load_steps=35 format=3 uid="uid://d0noxg6hflkj8"]
 
 [ext_resource type="Texture2D" uid="uid://cx4b5cckaanhb" path="res://assets/Monster_Creatures_Fantasy/Skeleton/Attack.png" id="1_glq3g"]
+[ext_resource type="Script" path="res://skeleton.gd" id="1_jeryf"]
 [ext_resource type="Texture2D" uid="uid://bfmljoucnkt43" path="res://assets/Monster_Creatures_Fantasy/Skeleton/Idle.png" id="2_u4tv5"]
 [ext_resource type="Texture2D" uid="uid://bh01l17x1d44j" path="res://assets/Monster_Creatures_Fantasy/Skeleton/Shield.png" id="3_1vt8d"]
 [ext_resource type="Texture2D" uid="uid://df0rtb8i5goxv" path="res://assets/Monster_Creatures_Fantasy/Skeleton/Walk.png" id="4_j8om8"]
@@ -171,6 +172,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81725"]
+size = Vector2(30, 51)
+
 [sub_resource type="Animation" id="Animation_3iqyk"]
 length = 0.001
 tracks/0/type = "value"
@@ -196,18 +200,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [7]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("movible/Area2D:disable_mode")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_bodrb"]
@@ -294,42 +286,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [0, 1, 2, 3]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("movible/Area2D:disable_mode")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.166667),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("movible/Area2D:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("movible/Area2D:monitorable")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
 
 [sub_resource type="Animation" id="Animation_cxgch"]
 resource_name = "walk_skeleton_animation"
@@ -369,22 +325,31 @@ _data = {
 }
 
 [node name="skeleton" type="CharacterBody2D"]
+script = ExtResource("1_jeryf")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(8.5, 0.5)
 shape = SubResource("RectangleShape2D_pq5ed")
-debug_color = Color(0.980392, 0, 0.0666667, 0.419608)
+debug_color = Color(0, 0.733333, 0.764706, 0.419608)
 
 [node name="movible" type="Marker2D" parent="."]
 
 [node name="skeletonSprite" type="AnimatedSprite2D" parent="movible"]
 sprite_frames = SubResource("SpriteFrames_nc8ww")
 animation = &"attack_skeleton_animation"
-frame = 7
 
-[node name="Area2D" type="Area2D" parent="movible"]
+[node name="hurtbox" type="Area2D" parent="movible"]
+
+[node name="hurtbox_skeleton_collision" type="CollisionShape2D" parent="movible/hurtbox"]
+position = Vector2(10, 0.5)
+shape = SubResource("RectangleShape2D_81725")
+debug_color = Color(0.94902, 0.0941176, 0, 0.419608)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_l2v2r")
 }
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

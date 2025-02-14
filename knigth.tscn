@@ -985,10 +985,10 @@ tracks/2/path = NodePath("hitbox_head:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.9667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.9667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_btgp2"]
@@ -1126,6 +1126,7 @@ debug_color = Color(0.696679, 0.494191, 0, 0.42)
 [node name="hurtbox_head" type="CollisionShape2D" parent="knigtht_hurtbox"]
 position = Vector2(-1.32912, -4.0891)
 shape = SubResource("RectangleShape2D_frlk8")
+disabled = true
 debug_color = Color(0.54462, 0.00258135, 0.818425, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]

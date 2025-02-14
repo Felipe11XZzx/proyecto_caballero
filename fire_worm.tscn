@@ -1,5 +1,6 @@
-[gd_scene load_steps=60 format=3 uid="uid://d3k5hq2xuadau"]
+[gd_scene load_steps=62 format=3 uid="uid://d3k5hq2xuadau"]
 
+[ext_resource type="Script" path="res://fire_worm.gd" id="1_01itj"]
 [ext_resource type="Texture2D" uid="uid://owc5mxeeoc6c" path="res://assets/Monster_Creatures_Fantasy/Fire Worm/Sprites/Worm/Attack.png" id="1_tuyfv"]
 [ext_resource type="Texture2D" uid="uid://bbiqktlmvxkju" path="res://assets/Monster_Creatures_Fantasy/Fire Worm/Sprites/Worm/Death.png" id="2_rm47w"]
 [ext_resource type="Texture2D" uid="uid://jxuxehbt1awf" path="res://assets/Monster_Creatures_Fantasy/Fire Worm/Sprites/Worm/Idle.png" id="2_xwv5e"]
@@ -352,6 +353,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_awvhd"]
+radius = 15.0
+height = 60.0026
+
 [sub_resource type="Animation" id="Animation_k00vc"]
 length = 0.001
 tracks/0/type = "value"
@@ -533,6 +538,7 @@ _data = {
 }
 
 [node name="worm" type="CharacterBody2D"]
+script = ExtResource("1_01itj")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -2)
@@ -544,7 +550,17 @@ shape = SubResource("RectangleShape2D_qgvqf")
 sprite_frames = SubResource("SpriteFrames_ckjtq")
 animation = &"idle_worm_animation"
 
+[node name="hurtbox" type="Area2D" parent="Movible"]
+
+[node name="hurtbox_collision_worm" type="CollisionShape2D" parent="Movible/hurtbox"]
+position = Vector2(-1, -2)
+rotation = 1.57214
+shape = SubResource("CapsuleShape2D_awvhd")
+debug_color = Color(0.917647, 0.184314, 0.0156863, 0.419608)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ijqfu")
 }
+
+[node name="Timer" type="Timer" parent="."]
