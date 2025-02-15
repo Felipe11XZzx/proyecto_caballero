@@ -34,7 +34,7 @@ func _on_timer_timeout() -> void:
 	var is_playing = $AnimationPlayer.is_playing()
 	$movible/laser/laser_sprite.visible = false
 
-	print("Animacion Aleatoria Numero: " + str(number))
+	#print("Animacion Aleatoria Numero: " + str(number))
 	is_attacking = true
 	if activate:
 		if number == 1:

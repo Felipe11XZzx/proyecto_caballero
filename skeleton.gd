@@ -1,108 +1,106 @@
 extends CharacterBody2D
 
-@export var is_attacking = false
-var activate = false
-const PATROL_SPEED = 100.0
-const CHASE_SPEED = 200.0
-const ATTACK_RANGE = 50.0
+@export var is_attacking: bool = false
+var activate: bool = false
+const ATTACK_RANGE: float = 50.0
+# Añadir un contador para ignorar salidas rápidas
+var exit_counter: int = 0
+const EXIT_THRESHOLD: int = 10
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var follow_movement: Node = $FollowMovementC
 @onready var detection_area: Area2D = $detection_box
 @onready var sprite: AnimatedSprite2D = $movible/skeletonSprite
 @onready var attack_timer: Timer = $AttackTimer
-@onready var patrol_timer: Timer = $PatrolTimer
 
-var direction: int = 1  # 1 = derecha, -1 = izquierda
 var player: CharacterBody2D = null
-var can_attack: bool = true
-var idle_time: float = 0
 
 func _ready() -> void:
+	print("Skeleton ready")
+	
+	# Verificar que los nodos existan
+	if !has_node("detection_box"):
+		print("ERROR: detection_box node not found!")
+		return
+	if !has_node("AnimationPlayer"):
+		print("ERROR: AnimationPlayer node not found!")
+	if !has_node("FollowMovementC"):
+		print("ERROR: FollowMovementC node not found!")
+	if !has_node("movible/skeletonSprite"):
+		print("ERROR: movible/skeletonSprite node not found!")
+	if !has_node("AttackTimer"):
+		print("ERROR: AttackTimer node not found!")
+	
+	print("All nodes found")
+	print("detection_area monitoring: ", detection_area.monitoring)
+	print("detection_area monitorable: ", detection_area.monitorable)
+	
+	# Asegúrate de que el monitoring esté habilitado
+	detection_area.monitoring = true
+	
 	detection_area.body_entered.connect(_on_body_entered)
 	detection_area.body_exited.connect(_on_body_exited)
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
-	patrol_timer.timeout.connect(_on_patrol_timer_timeout)
+	attack_timer.start(randf_range(2, 5))
 	
-	attack_timer.start(randf_range(2, 5))  # Inicia con tiempo aleatorio
-	patrol_timer.start(3)  # Cambia de dirección cada 3 segundos
+	# Verificar conexiones
+	var connections = detection_area.get_signal_connection_list("body_entered")
+	print("body_entered connections: ", connections)
 
-func _physics_process(delta: float) -> void:
-	if is_attacking:
-		velocity.x = 0  # 🔥 Cuando ataca o usa escudo, se queda quieto 🔥
-	else:
-		if activate and player:
-			# Perseguir al jugador
-			if player.is_on_floor():
-				direction = sign(player.global_position.x - global_position.x)
-				velocity.x = direction * CHASE_SPEED
-
-				# 🔥 Atacar de inmediato si está en rango 🔥
-				if global_position.distance_to(player.global_position) < ATTACK_RANGE and can_attack:
-					_attack()
-			else:
-				activate = false  # Deja de perseguir si el jugador está en el aire
-
-		else:
-			# Patrullar de izquierda a derecha
-			velocity.x = direction * PATROL_SPEED
-			idle_time += delta
-
-			# Cambia a animación idle después de caminar un rato
-			if idle_time > 3:
-				velocity.x = 0
-				animation_player.play("idle_skeleton_animation")
-				await get_tree().create_timer(2).timeout  # Espera 2 segundos en idle
-				idle_time = 0  # Reiniciar contador
-
-	_flip_sprite(direction)
-	move_and_slide()
-
-	# Animaciones de caminar, pero solo si no está atacando
-	if velocity.x != 0 and not is_attacking:
+func _physics_process(_delta: float) -> void:
+	# Si el jugador salió recientemente pero aún no ha pasado el umbral, decrementar contador
+	if exit_counter > 0:
+		exit_counter -= 1
+		# Si el contador llega a cero, entonces realmente consideramos que el jugador se fue
+		if exit_counter == 0 and player == null:
+			animation_player.play("idle_skeleton_animation")
+	
+	if player and global_position.distance_to(player.global_position) < ATTACK_RANGE and not is_attacking:
+		_attack()
+	elif not is_attacking and player:
 		animation_player.play("walk_skeleton_animation")
+	elif not player and not is_attacking and exit_counter == 0:
+		animation_player.play("idle_skeleton_animation")
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("golem_damage"):  
+	print("Body entered: ", body.name)
+	print("Body groups: ", body.get_groups())
+	
+	if body.is_in_group("golem_damage"):
+		print("Player detected!")
 		player = body
 		activate = true
-		idle_time = 0  # Resetear idle
+		exit_counter = 0  # Resetear el contador de salida
+		follow_movement._on_detection_box_body_entered(body)
 
 func _on_body_exited(body: Node2D) -> void:
+	print("Body exited: ", body.name)
+	
 	if body == player:
+		print("Player exited")
+		exit_counter = EXIT_THRESHOLD  # Iniciar el contador en lugar de inmediatamente poner player a null
 		activate = false
-		player = null
-		animation_player.play("idle_skeleton_animation")  # Volver a idle
-
-func _flip_sprite(move_dir: int) -> void:
-	sprite.flip_h = move_dir < 0  # Si va a la izquierda, voltea el sprite
-
-func _on_attack_timer_timeout() -> void:
-	if not activate and not is_attacking:  # Solo si no está persiguiendo y no está en medio de un ataque
-		var rng = RandomNumberGenerator.new()
-		var number = rng.randi_range(1, 2)  # 1 = escudo, 2 = ataque
-
-		if number == 1:
-			_activate_shield()
-		else:
-			_attack()
-
-	attack_timer.start(randf_range(2, 5))  # Reinicia con tiempo aleatorio
-
-func _activate_shield() -> void:
-	is_attacking = true
-	velocity.x = 0  # 🔥 Se queda quieto al activar escudo 🔥
-	animation_player.play("shield_skeleton_animation")
-	await animation_player.animation_finished
-	is_attacking = false
+		
+		# No cambiamos player = null inmediatamente
+		# No llamamos a idle_skeleton_animation inmediatamente
+		
+		# Todavía notificamos al componente de movimiento
+		follow_movement._on_detection_box_body_exited(body)
+		
+		# Solo si no vuelve a entrar antes de que el contador llegue a cero,
+		# entonces realmente consideraremos que se ha ido
+		await get_tree().create_timer(0.5).timeout
+		if exit_counter == 0:
+			player = null
 
 func _attack() -> void:
 	is_attacking = true
-	velocity.x = 0  # 🔥 Se queda quieto al atacar 🔥
+	velocity.x = 0
 	animation_player.play("attack_skeleton_animation")
 	await animation_player.animation_finished
 	is_attacking = false
+	attack_timer.start(randf_range(2, 5))
 
-func _on_patrol_timer_timeout() -> void:
-	if not activate and not is_attacking:  # Solo cambia de dirección si no está persiguiendo ni atacando
-		direction *= -1
-	patrol_timer.start(3)  # Reinicia el timer
+func _on_attack_timer_timeout() -> void:
+	if player and global_position.distance_to(player.global_position) < ATTACK_RANGE and not is_attacking:
+		_attack()

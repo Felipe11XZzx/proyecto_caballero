@@ -363,6 +363,8 @@ libraries = {
 [node name="PatrolTimer" type="Timer" parent="."]
 
 [node name="detection_box" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="area_colission" type="CollisionShape2D" parent="detection_box"]
 position = Vector2(61, -31)

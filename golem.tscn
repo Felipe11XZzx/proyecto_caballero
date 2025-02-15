@@ -700,9 +700,7 @@ offset_left = -140.0
 offset_top = 3.888
 offset_right = -90.0
 offset_bottom = 23.888
-max_health = 100.0
 parent = NodePath("../..")
-health = 100.0
 
 [node name="detection_box" type="Area2D" parent="."]
 

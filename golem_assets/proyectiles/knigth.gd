@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name knigth_player extends CharacterBody2D
 
 
 const SPEED = 800.0
