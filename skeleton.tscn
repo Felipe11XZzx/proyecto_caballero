@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d0noxg6hflkj8"]
+[gd_scene load_steps=36 format=3 uid="uid://d0noxg6hflkj8"]
 
 [ext_resource type="Texture2D" uid="uid://cx4b5cckaanhb" path="res://assets/Monster_Creatures_Fantasy/Skeleton/Attack.png" id="1_glq3g"]
 [ext_resource type="Script" path="res://skeleton.gd" id="1_jeryf"]
@@ -324,6 +324,9 @@ _data = {
 "walk_skeleton_animation": SubResource("Animation_cxgch")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7rw7"]
+size = Vector2(488, 116)
+
 [node name="skeleton" type="CharacterBody2D"]
 script = ExtResource("1_jeryf")
 
@@ -337,6 +340,7 @@ debug_color = Color(0, 0.733333, 0.764706, 0.419608)
 [node name="skeletonSprite" type="AnimatedSprite2D" parent="movible"]
 sprite_frames = SubResource("SpriteFrames_nc8ww")
 animation = &"attack_skeleton_animation"
+frame = 7
 
 [node name="hurtbox" type="Area2D" parent="movible"]
 
@@ -350,6 +354,15 @@ libraries = {
 "": SubResource("AnimationLibrary_l2v2r")
 }
 
-[node name="Timer" type="Timer" parent="."]
+[node name="AttackTimer" type="Timer" parent="."]
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="PatrolTimer" type="Timer" parent="."]
+
+[node name="detection_box" type="Area2D" parent="."]
+
+[node name="area_colission" type="CollisionShape2D" parent="detection_box"]
+position = Vector2(61, -31)
+shape = SubResource("RectangleShape2D_x7rw7")
+debug_color = Color(0.447059, 0.572549, 0.258824, 0.419608)
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
