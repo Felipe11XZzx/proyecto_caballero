@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d0noxg6hflkj8"]
+[gd_scene load_steps=37 format=3 uid="uid://d0noxg6hflkj8"]
 
 [ext_resource type="Texture2D" uid="uid://cx4b5cckaanhb" path="res://assets/Monster_Creatures_Fantasy/Skeleton/Attack.png" id="1_glq3g"]
 [ext_resource type="Script" path="res://skeleton.gd" id="1_jeryf"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bh01l17x1d44j" path="res://assets/Monster_Creatures_Fantasy/Skeleton/Shield.png" id="3_1vt8d"]
 [ext_resource type="Texture2D" uid="uid://df0rtb8i5goxv" path="res://assets/Monster_Creatures_Fantasy/Skeleton/Walk.png" id="4_j8om8"]
 [ext_resource type="Script" path="res://follow_movement.gd" id="6_u8qop"]
-[ext_resource type="PackedScene" uid="uid://bnfhk272uhiu8" path="res://Vida.tscn" id="7_6l6j1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pq5ed"]
 size = Vector2(43, 51)
@@ -177,13 +176,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81725"]
 size = Vector2(30, 51)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eq4w1"]
-radius = 23.9628
-height = 75.9994
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdvlm"]
-size = Vector2(11, 26.75)
-
 [sub_resource type="Animation" id="Animation_3iqyk"]
 length = 0.001
 tracks/0/type = "value"
@@ -209,30 +201,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [7]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("sword_hitbox/sword_collision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("shield_hitbox/shield_collision:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_bodrb"]
@@ -262,18 +230,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"attack_skeleton_animation"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("sword_hitbox/sword_collision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.966667, 1.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_akcs0"]
@@ -330,18 +286,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0, 1, 2, 3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("shield_hitbox/shield_collision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.933333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_cxgch"]
@@ -400,8 +344,6 @@ animation = &"attack_skeleton_animation"
 frame = 7
 
 [node name="hurtbox" type="Area2D" parent="movible"]
-collision_layer = 4
-collision_mask = 2
 
 [node name="hurtbox_skeleton_collision" type="CollisionShape2D" parent="movible/hurtbox"]
 position = Vector2(10, 0.5)
@@ -410,27 +352,6 @@ debug_color = Color(0.94902, 0.0941176, 0, 0.419608)
 
 [node name="FollowMovementC" type="Node" parent="."]
 script = ExtResource("6_u8qop")
-
-[node name="sword_hitbox" type="Area2D" parent="." groups=["enemies"]]
-collision_layer = 2
-collision_mask = 4
-
-[node name="sword_collision" type="CollisionShape2D" parent="sword_hitbox"]
-position = Vector2(35, -8)
-rotation = 1.56673
-shape = SubResource("CapsuleShape2D_eq4w1")
-disabled = true
-debug_color = Color(0.929412, 0, 0, 0.419608)
-
-[node name="shield_hitbox" type="Area2D" parent="." groups=["enemies"]]
-collision_layer = 2
-collision_mask = 4
-
-[node name="shield_collision" type="CollisionShape2D" parent="shield_hitbox"]
-position = Vector2(27.5, -4.375)
-shape = SubResource("RectangleShape2D_tdvlm")
-disabled = true
-debug_color = Color(0.584314, 1, 0, 0.419608)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -448,26 +369,6 @@ position = Vector2(61, -31)
 shape = SubResource("RectangleShape2D_x7rw7")
 debug_color = Color(0.447059, 0.572549, 0.258824, 0.419608)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Vida" parent="CanvasLayer" node_paths=PackedStringArray("parent") instance=ExtResource("7_6l6j1")]
-offset_left = 1013.0
-offset_top = 128.0
-offset_right = 1053.0
-offset_bottom = 168.0
-max_health = 100.0
-parent = NodePath("../..")
-health = 100.0
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 1015.0
-offset_top = 148.0
-offset_right = 1151.0
-offset_bottom = 171.0
-text = "Skeleton Life"
-horizontal_alignment = 1
-
-[connection signal="area_shape_entered" from="movible/hurtbox" to="." method="_on_hurtbox_area_shape_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="detection_box" to="FollowMovementC" method="_on_detection_box_body_entered"]
 [connection signal="body_exited" from="detection_box" to="FollowMovementC" method="_on_detection_box_body_exited"]

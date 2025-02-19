@@ -1102,7 +1102,9 @@ script = ExtResource("21_0fyhj")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Vida" parent="CanvasLayer" node_paths=PackedStringArray("parent") instance=ExtResource("23_71fmu")]
+max_health = 100.0
 parent = NodePath("../..")
+health = 100.0
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 1.0

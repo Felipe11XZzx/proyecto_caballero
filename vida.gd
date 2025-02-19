@@ -3,7 +3,6 @@ class_name health_component extends Control
 @export var max_health: float
 @export var parent: Node2D
 @export var health:  float
-signal died
 
 func update_bar_life():
 	$barra_vida.value=health
@@ -17,7 +16,6 @@ func get_damage(damage : float):
 	health -= damage
 	update_bar_life()
 	if health <= 0:
-		died.emit()
 		parent.queue_free()
 	
 # Called when the node enters the scene tree for the first time.

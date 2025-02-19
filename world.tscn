@@ -23,7 +23,7 @@ z_index = 1
 
 [node name="Sky" type="Sprite2D" parent="TileMapLayer/ParallaxBackground"]
 z_index = 1
-position = Vector2(1134, 734)
+position = Vector2(1133, 734)
 scale = Vector2(55.7321, 4.82237)
 texture = ExtResource("2_igdtw")
 

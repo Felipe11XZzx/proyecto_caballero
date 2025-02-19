@@ -16,11 +16,11 @@ position = Vector2(220, 464)
 scale = Vector2(4, 4)
 
 [node name="worm" parent="." instance=ExtResource("4_dj47b")]
-position = Vector2(1083, 926)
+position = Vector2(2567, 910)
 scale = Vector2(3, 3)
 
 [node name="skeleton" parent="." instance=ExtResource("4_j67jl")]
-position = Vector2(-587, 879)
+position = Vector2(-257, 873)
 scale = Vector2(3, 3)
 
 [node name="world" parent="." instance=ExtResource("3_2ydgb")]
