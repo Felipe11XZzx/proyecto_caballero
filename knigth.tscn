@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://bgfxn0psr2wsp"]
+[gd_scene load_steps=116 format=3 uid="uid://bgfxn0psr2wsp"]
 
 [ext_resource type="Texture2D" uid="uid://civ4h8574gw1r" path="res://assets/caballero/animations/_Attack.png" id="1_g5dex"]
 [ext_resource type="Texture2D" uid="uid://bfhdl3l5j7nvy" path="res://assets/caballero/animations/_Attack2.png" id="1_psmmo"]
@@ -11,11 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://jxd4hlaln2wk" path="res://assets/caballero/animations/_CrouchTransition.png" id="4_ytp4y"]
 [ext_resource type="Texture2D" uid="uid://b2ammmxjw0nhj" path="res://assets/caballero/animations/_JumpFallInbetween.png" id="5_qp1s4"]
 [ext_resource type="Texture2D" uid="uid://dos781o1y14v1" path="res://assets/caballero/animations/_CrouchWalk.png" id="7_dphqb"]
+[ext_resource type="Texture2D" uid="uid://dj2n01obrg4gi" path="res://assets/caballero/animations/_Roll.png" id="10_8aw31"]
 [ext_resource type="Script" path="res://knigth_machine_state.gd" id="11_0hhxf"]
 [ext_resource type="Script" path="res://knigth_state.gd" id="11_c3xgk"]
+[ext_resource type="Texture2D" uid="uid://dqjw4adet7m15" path="res://assets/caballero/animations/_SlideTransitionStart.png" id="13_1vv55"]
 [ext_resource type="Script" path="res://idle_state.gd" id="13_8d4gn"]
 [ext_resource type="Script" path="res://attack_state.gd" id="14_04a4t"]
+[ext_resource type="Texture2D" uid="uid://dsa5d2yn3kgqt" path="res://assets/caballero/animations/_Slide.png" id="14_10265"]
 [ext_resource type="Script" path="res://crouch_state.gd" id="15_1e7k6"]
+[ext_resource type="Texture2D" uid="uid://bubsnof713suc" path="res://assets/caballero/animations/_SlideTransitionEnd.png" id="15_3f2ih"]
 [ext_resource type="Script" path="res://run_state.gd" id="16_nhihk"]
 [ext_resource type="Script" path="res://attack_2_state.gd" id="17_dt50h"]
 [ext_resource type="Script" path="res://crawl_attack_state.gd" id="18_xa2v2"]
@@ -23,6 +27,8 @@
 [ext_resource type="Script" path="res://jump_state.gd" id="20_3etib"]
 [ext_resource type="Script" path="res://run_crawl_state.gd" id="21_0fyhj"]
 [ext_resource type="PackedScene" uid="uid://bnfhk272uhiu8" path="res://Vida.tscn" id="23_71fmu"]
+[ext_resource type="Script" path="res://slide_animation.gd" id="27_e464o"]
+[ext_resource type="Script" path="res://roll_animation.gd" id="28_du0eu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bno44"]
 size = Vector2(25.3152, 29.6737)
@@ -151,6 +157,54 @@ region = Rect2(0, 0, 120, 80)
 atlas = ExtResource("5_qp1s4")
 region = Rect2(120, 0, 120, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty70n"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56bhj"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8yd7"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(240, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6milu"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(360, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksxnn"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(480, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb50p"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(600, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkntw"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(720, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mccbl"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(840, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl36f"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(960, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25vip"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(1080, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uddvx"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(1200, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxdbv"]
+atlas = ExtResource("10_8aw31")
+region = Rect2(1320, 0, 120, 80)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4nna"]
 atlas = ExtResource("4_xwd7b")
 region = Rect2(0, 0, 120, 80)
@@ -223,6 +277,22 @@ region = Rect2(720, 0, 120, 80)
 atlas = ExtResource("7_dphqb")
 region = Rect2(840, 0, 120, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyxkc"]
+atlas = ExtResource("13_1vv55")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_246mk"]
+atlas = ExtResource("14_10265")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4a8re"]
+atlas = ExtResource("14_10265")
+region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ebd2"]
+atlas = ExtResource("15_3f2ih")
+region = Rect2(0, 0, 120, 80)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_py4xt"]
 animations = [{
 "frames": [{
@@ -293,11 +363,6 @@ animations = [{
 "name": &"crawl_attack_animation",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nnf6s")
@@ -351,6 +416,47 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ty70n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56bhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8yd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6milu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksxnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb50p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkntw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mccbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl36f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25vip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uddvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxdbv")
+}],
+"loop": true,
+"name": &"roll_animation",
 "speed": 5.0
 }, {
 "frames": [{
@@ -415,6 +521,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_crawl_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyxkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_246mk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a8re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ebd2")
+}],
+"loop": true,
+"name": &"slide_animation",
 "speed": 5.0
 }]
 
@@ -991,6 +1114,61 @@ tracks/2/keys = {
 "values": [true, true]
 }
 
+[sub_resource type="Animation" id="Animation_wvvi8"]
+resource_name = "slide_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("movible/Knight_animation_sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"slide_animation"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("movible/Knight_animation_sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_2yen0"]
+resource_name = "roll_animation"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("movible/Knight_animation_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333, 0.666667, 0.8, 0.933333, 1.06667, 1.2, 1.33333, 1.43333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("movible/Knight_animation_sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"roll_animation"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_btgp2"]
 _data = {
 "RESET": SubResource("Animation_qdgwh"),
@@ -1000,8 +1178,10 @@ _data = {
 "crouch_animation": SubResource("Animation_r1q81"),
 "idle_animation": SubResource("Animation_ywfdy"),
 "jump_animation": SubResource("Animation_f2ryf"),
+"roll_animation": SubResource("Animation_2yen0"),
 "run_animation": SubResource("Animation_c23ov"),
-"run_crawl_animation": SubResource("Animation_uuwqx")
+"run_crawl_animation": SubResource("Animation_uuwqx"),
+"slide_animation": SubResource("Animation_wvvi8")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1muh"]
@@ -1098,6 +1278,12 @@ script = ExtResource("20_3etib")
 
 [node name="run_crawl_animation" type="Node2D" parent="Knigth_machine_state"]
 script = ExtResource("21_0fyhj")
+
+[node name="slide_animation" type="Node2D" parent="Knigth_machine_state"]
+script = ExtResource("27_e464o")
+
+[node name="roll_animation" type="Node2D" parent="Knigth_machine_state"]
+script = ExtResource("28_du0eu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
